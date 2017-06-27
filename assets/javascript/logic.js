@@ -10,15 +10,23 @@
 }
 
       
- $("#add-location").on("click", function(event) { 
+ $("#submit-bathroom").on("click", function(event) { 
         //prevent the default action of the element from happening
             event.preventDefault();
        
         //inside the form input, use jq to grab the location input without spaces  
+        var name = $("#name-input").val().trim();
+        var review= $("#review-input").val().trim();
         var currentLocation = $("#current-location-input").val().trim(); 
+        var image = $("#image-input").val().trim();
+
+
 
         // Clear the input form
+        $("#name-input").val("");
+        $("#review-input").val("");
         $("#current-location-input").val("");
+        $("#image-input").val("");
 
         //the location from the text box has to be queued up in the array 
         var a = $("<button>"); 
