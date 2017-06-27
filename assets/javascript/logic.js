@@ -1,14 +1,24 @@
-//test linking the js source 
-alert('yo!'); 
+
 
 //INIT EVENT HANDLER SANDBOX
+      function initMap() {
+      var mapProp = {
+      center: new google.maps.LatLng(38.883340, -77.117982),
+      zoom: 15,
+      };
+      var map = new google.maps.Map(document.getElementById("map-section"),mapProp);
+}
 
- $("#add-end-location").on("click", function(event) { 
+      
+ $("#add-location").on("click", function(event) { 
         //prevent the default action of the element from happening
             event.preventDefault();
        
         //inside the form input, use jq to grab the location input without spaces  
-        var currentLocation = $("#end-location-input").val().trim(); 
+        var currentLocation = $("#current-location-input").val().trim(); 
+
+        // Clear the input form
+        $("#current-location-input").val("");
 
         //the location from the text box has to be queued up in the array 
         var a = $("<button>"); 

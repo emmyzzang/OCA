@@ -1,0 +1,82 @@
+    input {
+        margin-bottom: 2em;
+    }
+
+    * {
+        font-family: 'Varela Round', sans-serif;
+    }
+
+    h1 {
+        line-height: 2em;
+    }
+
+    h2 {
+        margin-top: 0px;
+    }
+
+    body {
+        /*overflow-y: hidden;*/
+    }
+
+    footer {
+        width: 100%;
+        bottom: 0;
+        position: fixed;
+        border-top: 1px solid black;
+    }
+
+    ul, li {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        display: inline;
+    }
+
+    .jumbotron {
+        height: 10em;
+        margin-top: 1em;
+        margin-right: 7.5%;
+        margin-left: 7.5%;
+        border-radius: 2em;
+        padding: 0;
+    }
+
+    .social-icon {
+        margin-left: .5%;
+        margin-right: .5%;
+
+    }
+    
+    #display-map {
+        /*border: 1px solid black;*/
+        height: 25em;
+        margin-bottom: 2em;
+        border-radius: 10px;
+    }
+    
+    #search-section {
+        border: 1px solid black;
+        height: 14em;
+        margin-right: 25%;
+        margin-left: 25%;
+        border-radius: 10px;
+        text-align: center;
+    }
+    
+    #results-section {
+        margin-top: 2em;
+        height: 21em;
+    }
+    
+    #map-section {
+        margin-top: 2em;
+        /*border-right: 1px solid black;*/
+        height: 21em;
+    }
+    
+    #form-section {
+        margin-top: 2em;
+        margin-bottom: 2em;
+        padding-right: 2em;
+        padding-left: 2em;
+    }
