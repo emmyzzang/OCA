@@ -3,22 +3,16 @@
 
 <head>
     <title>Oh, Crapp!</title>
-
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
     <!-- Modified CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
     <!-- Google Fonts: Varela Round -->
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
-
 </head>
 
 <body>
@@ -26,69 +20,68 @@
         <h1>Ohhh, Cr<img src="assets/images/poop-emoji.png" alt="header-image" height="50px">pp!</h1>
     </div>
     <div class="container">
-
         <!-- THIS WILL BE OUR SECTION TO DISPLAY THE MAP AND RESULTS -->
         <section id="display-map">
             <div class="row">
                 <!-- THIS WILL BE THE MAP -->
-                <div class="col-lg-6 text-center" id="map-section" style="width:50%;height:300px;">
+                <div class="col-lg-6 text-center" id="map-section">
                     MAP GOES HERE
                 </div>
-
                 <!-- THIS WILL DISPLAY THE RESULTS FOR THE BATHROOMS WE CLICK -->
                 <div class="col-lg-6 text-center" id="results-section">
                     RESULTS GO HERE
                 </div>
             </div>
         </section>
-
         <!-- THIS SECTION WILL HOLD OUR FORM -->
         <section id="search-section">
             <div class="col-lg-12 text-center" id="form-section">
-<!--                 <h2>Enter Your Destination below:</h2>
+                <!--                 <h2>Enter Your Destination below:</h2>
             <br> -->
-             <form>
-                <div class="form-group">
-                    <label for="name"><h2>Location Name:</h2></label>
-                    <input type="name" placeholder="Enter the places name..." class="form-control" id="name-input" required>
-                </div>
-                <div class="form-group">
-                    <label for="review"><h2>Review:</h2></label>
-                    <input type="review" placeholder="Enter your review here..." class="form-control" id="review-input" required>
-                </div>
-                <div class="form-group">
-                    <label for="current-location"><h2>Address:</h2></label>
-                    <input type="current-location" placeholder="Enter your location..." class="form-control" id="current-location-input" required>
-                </div>
-                <div class="form-group">
-                    <label for="image"><h2>Image:</h2></label>
-                    <input type="file" placeholder="Submit your image..." class="form-control" id="image-input" required>
-                </div>
+                <form>
+                    <div class="form-group">
+                        <label for="name">
+                            <h2>Location Name:</h2></label>
+                        <input type="name" placeholder="Enter the places name..." class="form-control" id="name-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">
+                            <h2>Address:</h2></label>
+                        <input type="address" placeholder="Enter your location..." class="form-control" id="address-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="review">
+                            <h2>Review:</h2></label>
+                        <textarea type="review" placeholder="Enter your review here..." class="form-control" rows="5" id="review-input" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">
+                            <h2>Image:</h2></label>
+                        <input type="file" placeholder="Submit your image..." class="form-control-file" id="image-input" required>
+                    </div>
                     <button class="btn btn-default" id="submit-bathroom">Search!</button>
                 </form>
-                </div>
             </div>
-        </section>
-
-
+    </div>
+    </section>
     <!-- THIS SECTION WILL HOLD OUR FOOTER -->
     <section>
         <footer class="text-center">
             <ul>
-                <li><a href="http://www.instagram.com/ohhhcrapp"><img class="social-icon" src="assets/images/instagram-icon.png" alt="Instagram" height="75px"></a>
+                <li>
+                    <a href="http://www.instagram.com/ohhhcrapp"><img class="social-icon" src="assets/images/instagram-icon.png" alt="Instagram" height="75px"></a>
                 </li>
-                <li><a href="http://www.twitter.com/ohhhcrapp"><img class="social-icon" src="assets/images/twitter-icon.png" alt="Twitter" height="60px"></a>
+                <li>
+                    <a href="http://www.twitter.com/ohhhcrapp"><img class="social-icon" src="assets/images/twitter-icon.png" alt="Twitter" height="60px"></a>
                 </li>
             </ul>
-        <footer>
+            <footer>
     </section>
     </div>
-
-    <!--Linking the JS file--> 
-    <script type="text/javascript" src= "assets/javascript/logic.js"></script>
-
+    <!--Linking the JS file-->
+    <script type="text/javascript" src="assets/javascript/logic.js"></script>
     <!-- Linking to Google Maps API -->
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVV7ky30CSKnBWOazkfS4zt4xM7AvBgGk&callback=initMap"
-    async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVV7ky30CSKnBWOazkfS4zt4xM7AvBgGk&callback=initMap" async defer></script>
 </body>
+
 </html>

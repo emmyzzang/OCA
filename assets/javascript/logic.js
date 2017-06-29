@@ -1,9 +1,11 @@
-$(document).ready(function() {
 
-    // Load google map
+
+// Initilize Google Maps API and displaying to the page
+function initMap() {
+    var defaultPosition = new google.maps.LatLng(38.883340, -77.117982);
     var map = new google.maps.Map(document.getElementById("map-section"), {
-        center: new google.maps.LatLng(38.883340, -77.117982),
-        zoom: 13,
+        center: defaultPosition,
+        zoom: 10,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         panControl: false,
         streetViewControl: false,
@@ -11,34 +13,49 @@ $(document).ready(function() {
     });
 
 
+    // Event listener for our submit bathroom button
     $("#submit-bathroom").on("click", function(event) {
+
+
         // Prevent the default action of the element from happening
         event.preventDefault();
 
-        // Inside the form input, use jq to grab the location input without spaces  
+
+        // Setting the variables to correspond to the input fields
         var name = $("#name-input").val().trim();
         $("#name-input").val("");
 
         var review = $("#review-input").val().trim();
         $("#review-input").val("");
 
-        var currentLocation = $("#current-location-input").val().trim();
-        $("#current-location-input").val("");
+        var address = $("#address-input").val().trim();
+        $("#address-input").val("");
 
         var image = $("#image-input").val().trim();
         $("#image-input").val("");
 
+
+        // Setting up the geocoder so when we type in the physical address it will convert to lattitude and longitude coordinates for us
         var geocoder = new google.maps.Geocoder();
         geocoder.geocode({
-                address: currentLocation,
+                address: address,
                 region: 'no'
             },
 
             function(results, status) {
                 var name = $("#name-input").val().trim();
                 var review = $("#review-input").val().trim();
-                var currentLocation = $("#current-location-input").val().trim();
+                var address = $("#address-input").val().trim();
                 var image = $("#image-input").val().trim();
+
+
+                // Setting the icon variable to the image we'll use
+                var icon = {
+                    url: "assets/images/poop-emoji.png",
+                    scaledSize: new google.maps.Size(25, 25),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(0, 0)
+                };
 
                 if (status.toLowerCase() == 'ok') {
                     var coordinates = new google.maps.LatLng(
@@ -47,30 +64,31 @@ $(document).ready(function() {
                     );
 
                     map.setCenter(coordinates)
-                    map.setZoom(13);
+                    map.setZoom(10);
 
                     marker = new google.maps.Marker({
                         position: coordinates,
                         map: map,
-                        // title: $('#current-location').val()
+                        icon: icon
+                    });
+
+
+                    // Event listener for the click so we can open an information window
+                    marker.addListener('click', function() {
+                        infowindow.open(map, marker);
+
+                    });
+
+
+                    // Setting the variable that will store the content the user types in so we can store it in an information window, need to fix this
+                    var contentString = 'Name: ' + 'name value' + '<br>' + 'Address: ' + 'address value' + '<br>' +'<br>' + 'image' + '<br>' +'<br>' + 'review value';
+
+
+                    // Setting up the information window
+                    var infowindow = new google.maps.InfoWindow({
+                        content: contentString
                     });
                 }
             });
     });
-});
-
-// //the location from the text box has to be queued up in the array 
-// var a = $("<button>"); 
-
-//   //for the button stored in variable a, add a class of location 
-//   a.addClass("location"); 
-
-//   //for the button stored in variable a, add the data attribute 
-//   a.attr("data-location", location); 
-
-//   //for the button stored in variable a, write the text of the location 
-//   a.text(location); 
-
-//   //use jq to grab the buttons view div and add the button to it
-//   //this is how we control the view, whether it is removed or added, etc.
-//   $("#buttons-view").append(a);
+};

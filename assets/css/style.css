@@ -1,23 +1,23 @@
-    input {
+    input, textarea {
         margin-bottom: 2em;
     }
-
+    
     * {
         font-family: 'Varela Round', sans-serif;
     }
-
+    
     h1 {
         line-height: 2em;
     }
-
+    
     h2 {
         margin-top: 0px;
     }
-
+    
     body {
         /*overflow-y: hidden;*/
     }
-
+    
     footer {
         width: 100%;
         bottom: 0;
@@ -25,18 +25,19 @@
         border-top: 1px solid black;
         background-color: white;
     }
-
-    ul, li {
+    
+    ul,
+    li {
         padding: 0;
         margin: 0;
         list-style: none;
         display: inline;
     }
-
+    
     form {
         margin-bottom: 3em;
     }
-
+    
     .jumbotron {
         height: 10em;
         margin-top: 1em;
@@ -45,19 +46,17 @@
         border-radius: 2em;
         padding: 0;
     }
-
+    
     .social-icon {
         margin-left: .5%;
         margin-right: .5%;
+    }
 
-    }
-    
-    #display-map {
-        /*border: 1px solid black;*/
-        height: 25em;
-        margin-bottom: 2em;
-        border-radius: 10px;
-    }
+/*    #display-map {
+        border: 1px solid black;
+        height: auto;
+        border-radius: 0px;
+    }*/
     
     #search-section {
         border: 0px solid black;
@@ -70,19 +69,26 @@
     }
     
     #results-section {
-        margin-top: 2em;
-        height: 21em;
+        padding-top: 1em;
+        padding-left: 5%;
+        padding-right: 5%;
+        height: 500px;
+        border: 1px solid black;
     }
     
     #map-section {
-        margin-top: 2em;
-        /*border-right: 1px solid black;*/
-        height: 21em;
+        border: 1px solid black;
+        height: 500px;
     }
     
     #form-section {
-        margin-top: 2em;
+        margin-top: 3em;
         margin-bottom: 5em;
         padding-right: 2em;
         padding-left: 2em;
+    }
+    
+    .row {
+        margin-left: 0;
+        margin-right: 0;
     }
