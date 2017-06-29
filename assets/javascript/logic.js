@@ -86,7 +86,7 @@ function initMap() {
                 // Setting the icon variable to the image we'll use
                 var icon = {
                     url: "assets/images/poop-emoji.png",
-                    scaledSize: new google.maps.Size(25, 25),
+                    scaledSize: new google.maps.Size(30, 30),
                     origin: new google.maps.Point(0, 0),
                     anchor: new google.maps.Point(0, 0)
                 };
