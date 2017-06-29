@@ -112,7 +112,7 @@ function initMap() {
 
 
                     // Setting the variable that will store the content the user types in so we can store it in an information window, need to fix this
-                    var contentString = 'Name: ' + 'name value' + '<br>' + 'Address: ' + 'address value' + '<br>' + '<br>' + 'image' + '<br>' + '<br>' + 'review value';
+                    var contentString = 'Name: ' + newPost.name + '<br>' + 'Address: ' + newPost.address + '<br>' + '<br>' + 'image' + '<br>' + '<br>' + newPost.review;
 
 
                     // Setting up the information window
