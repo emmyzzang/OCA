@@ -3,14 +3,26 @@ function initMap() {
     var defaultPosition = new google.maps.LatLng(38.883340, -77.117982);
     var map = new google.maps.Map(document.getElementById("map-section"), {
         center: defaultPosition,
-        zoom: 10,
+        zoom: 11,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         panControl: false,
         streetViewControl: false,
         mapTypeControl: false
     });
 
+        // // Setting up our firebase configuration
+        var config = {
+            apiKey: "AIzaSyAGDsGNskbjVbwEFV8Ww9nINcsKZ0YgfEY",
+            authDomain: "ohhh-crapp.firebaseapp.com",
+            databaseURL: "https://ohhh-crapp.firebaseio.com",
+            projectId: "ohhh-crapp",
+            storageBucket: "ohhh-crapp.appspot.com",
+            messagingSenderId: "286848805874"
+        };
 
+        firebase.initializeApp(config);
+
+        var database = firebase.database();
     // Event listener for our submit bathroom button
     $("#submit-bathroom").on("click", function(event) {
 
@@ -33,22 +45,7 @@ function initMap() {
         $("#image-input").val("");
 
 
-        // Setting up our firebase configuration
-        var config = {
-            apiKey: "AIzaSyAGDsGNskbjVbwEFV8Ww9nINcsKZ0YgfEY",
-            authDomain: "ohhh-crapp.firebaseapp.com",
-            databaseURL: "https://ohhh-crapp.firebaseio.com",
-            projectId: "ohhh-crapp",
-            storageBucket: "ohhh-crapp.appspot.com",
-            messagingSenderId: "286848805874"
-        };
-
-        firebase.initializeApp(config);
-
-        var database = firebase.database();
-
-
-        // Setting the object to store our information
+        // // Setting the object to store our information
         var newPost = {
             name: name,
             address: address,
@@ -57,7 +54,7 @@ function initMap() {
         };
 
 
-        // Pushing our input values to a new object for each submission
+        // // Pushing our input values to a new object for each submission
         database.ref().push(newPost);
 
         database.ref().on("child_added", function(snapshot) {
@@ -98,7 +95,7 @@ function initMap() {
                     );
 
                     map.setCenter(coordinates)
-                    map.setZoom(10);
+                    map.setZoom(11);
 
                     marker = new google.maps.Marker({
                         position: coordinates,
@@ -109,7 +106,7 @@ function initMap() {
 
                     // Event listener for the click so we can open an information window
                     marker.addListener('click', function() {
-                        infowindow.open(map, marker);
+                        infowindow.open(map, this);
 
                     });
 
