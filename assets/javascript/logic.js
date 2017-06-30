@@ -10,27 +10,61 @@ function initMap() {
         mapTypeControl: false
     });
 
-        // // Setting up our firebase configuration
-        var config = {
-            apiKey: "AIzaSyAGDsGNskbjVbwEFV8Ww9nINcsKZ0YgfEY",
-            authDomain: "ohhh-crapp.firebaseapp.com",
-            databaseURL: "https://ohhh-crapp.firebaseio.com",
-            projectId: "ohhh-crapp",
-            storageBucket: "ohhh-crapp.appspot.com",
-            messagingSenderId: "286848805874"
-        };
-
-        firebase.initializeApp(config);
+// Setting up our firebase configuration
+// Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyB9nsZljpiCtBWyKOKUbW3uHC4G-jvwnBY",
+            authDomain: "oca-db-deb77.firebaseapp.com",
+            databaseURL: "https://oca-db-deb77.firebaseio.com",
+            projectId: "oca-db-deb77",
+            storageBucket: "",
+            messagingSenderId: "386358233518"
+          };
+          firebase.initializeApp(config);
 
         var database = firebase.database();
-    // Event listener for our submit bathroom button
-    $("#submit-bathroom").on("click", function(event) {
+    
+//USER QUERY EXISTING DB DATA
+
+    // Event listener for button for user to query existing bathroom db 
+    // for bathroom location that the user is trying to find 
+
+    $("#add-location").click(function(event) { 
+
+   // Prevent the default action of the element from happening
+    event.preventDefault();
+
+    // Grab the user input and store into declarative variable
+
+    var newLocation = $("#location-input").val().trim(); 
+
+    // Create temporary object for holding new location data
+
+    newObject =  {
+        location: newLocation
+
+    }; 
+
+    // Upload the newObject location data to the database
+    // This will trigger the "child_added" event
+    
+    database.ref().push(newObject); 
+    alert("WOOO!");
+    // Flush out the input well
+
+    $("#location-input").val("");
+
+     });
 
 
-        // Prevent the default action of the element from happening
-        event.preventDefault();
 
+   
 
+//USER ADDING NEW DATA TO DB VIA ADD CHILD
+
+$("#submit-bathroom").on("click", function(event) {
+
+        event.preventDefault(); 
         // Setting the variables to correspond to the input fields
         var name = $("#name-input").val().trim();
         $("#name-input").val("");
