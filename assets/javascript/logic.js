@@ -109,20 +109,20 @@ $("#submit-bathroom").on("click", function(event) {
 
     var imageName = image.replace('C:\\fakepath\\','');
 
-    var uploadTask = firebase.storage().ref()
-        .child(imageName)
-        .put(blob, metadata);
+//     var uploadTask = firebase.storage().ref()
+//         .child(imageName)
+//         .put(blob, metadata);
 
-// Observe state change events such as progress, pause, and resume
-// See below for more detail
-    uploadTask.on('state_changed', function(snapshot){
-// Handle unsuccessful uploads       
-    }, function(error) {
+// // Observe state change events such as progress, pause, and resume
+// // See below for more detail
+//     uploadTask.on('state_changed', function(snapshot){
+// // Handle unsuccessful uploads       
+//     }, function(error) {
         
-    }, function() {
-        console.log("SUCCESS!!!!!!");
+//     }, function() {
+//         console.log("SUCCESS!!!!!!");
 
-    });
+//     });
 
 
 // ** IMAGE STUFF END ** //
@@ -188,21 +188,34 @@ $("#submit-bathroom").on("click", function(event) {
                     });
 
 
-                    // Event listener for the click so we can open an information window
+                    var contentString = '<img src="#" height="500px">' + '<br>' + '<br>' + 'NAME: ' + newPost.name.toUpperCase() + '<br>' + '<br>' + 'ADDRESS: ' + newPost.address.toUpperCase() + '<br>' + '<br>' + '<strong>REVIEW:</strong> ' + newPost.review.toUpperCase();
+
+                    // Event listener for the click so we can open a modal that will display the content from the database
                     marker.addListener('click', function() {
-                        infowindow.open(map, this);
+                        $('#myModal').modal('show');
+                        $('#marker-info').html(contentString)
+                            // infowindow.setContent()
+                            // infowindow.open(map, this);
+                        $('location-header').html(newPost.address.toUpperCase())
 
                     });
 
+                    // // Event listener for the click so we can open an information window
+                    // marker.addListener('click', function() {
+                    //     infowindow.open(map, this);
 
-                    // Setting the variable that will store the content the user types in so we can store it in an information window, need to fix this
-                    var contentString = 'Name: ' + newPost.name + '<br>' + 'Address: ' + newPost.address + '<br>' + '<br>' + 'image' + '<br>' + '<br>' + newPost.review;
+                    // });
 
 
-                    // Setting up the information window
-                    var infowindow = new google.maps.InfoWindow({
-                        content: contentString
-                    });
+                    // // Setting the variable that will store the content the user types in so we can store it in an information window, need to fix this
+                    // var contentString = 'Name: ' + newPost.name + '<br>' + 'Address: ' + newPost.address + '<br>' + '<br>' + 'image' + '<br>' + '<br>' + newPost.review;
+
+
+
+                    // // Setting up the information window
+                    // var infowindow = new google.maps.InfoWindow({
+                    //     content: contentString
+                    // });
                 }
             });
     });

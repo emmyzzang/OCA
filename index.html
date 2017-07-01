@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 
 <head>
@@ -23,11 +22,10 @@
 
     <!-- Modified CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
+    
     <!-- Google Fonts: Varela Round -->
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
 </head>
-
 
 <body>
     <div class="jumbotron text-center">
@@ -35,31 +33,51 @@
     </div>
     <div class="container">
 
-        <!-- THIS WILL BE OUR SECTION TO DISPLAY THE MAP AND RESULTS -->
+        <!-- This is the start of the section displaying the map and the search/results -->
         <section id="display-map">
             <div class="row">
 
-                <!-- THIS WILL DISPLAY THE MAP -->
+                <!-- This will be where the map is displayed -->
                 <div class="col-lg-5 text-center" id="map-section">
                     MAP GOES HERE
                 </div>
 
-                <!-- THIS WILL DISPLAY THE RESULTS OF THE CLICKS -->
+                <!-- This will be our results/search section -->
                 <div class="col-lg-5 text-center" id="results-section">
                     <form id="input-form">
                         <label for="location-input">Where would you like to crapp?</label>
-                <input type="text" id="location-input" class="form-control">
-        <br>
-                <input id="add-location" button class="btn btn-default" type="submit" value="Gotta Go Fast!">
+                        <input type="text" id="location-input" class="form-control">
+                        <br>
+                        <input id="add-location" button class="btn btn-default" type="submit" value="Gotta Go Fast!">
                     </form>
-        <div id="location-view"></div>
-        <div id="images-appear-here"></div>
+                    <div id="location-view"></div>
+                    <div id="images-appear-here"></div>
                     RESULTS GO HERE
                 </div>
             </div>
         </section>
 
-        <!-- THIS SECTION WILL HOLD OUR FORM -->
+        <!-- Modal for Marker clicks -->
+        <section id="marker-modal">
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"></button>
+                            <h4 class="modal-title">Ohhh, Cr<img src="assets/images/poop-emoji.png" alt="header-image" height="15px">pp!</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p id="marker-info"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- This section will hold our form -->
         <section id="search-section">
             <div class="col-lg-12 text-center" id="form-section">
                 <form>
@@ -89,7 +107,7 @@
     </div>
     </section>
 
-    <!-- THIS SECTION WILL HOLD OUR FOOTER -->
+    <!-- This section will hold our footer -->
     <section>
         <footer class="text-center">
             <ul>
@@ -104,4 +122,5 @@
     </section>
     </div>
 </body>
+
 </html>
