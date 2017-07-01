@@ -17,7 +17,7 @@ function initMap() {
             authDomain: "oca-db-deb77.firebaseapp.com",
             databaseURL: "https://oca-db-deb77.firebaseio.com",
             projectId: "oca-db-deb77",
-            storageBucket: "",
+            storageBucket: "gs://oca-db-deb77.appspot.com",
             messagingSenderId: "386358233518"
           };
           firebase.initializeApp(config);
@@ -62,6 +62,23 @@ function initMap() {
 
 //USER ADDING NEW DATA TO DB VIA ADD CHILD
 
+
+// // Create a root reference in a declarative variable 
+var storageRef = firebase.storage().ref();
+
+// // Create a reference to 'TEST.jpg'
+var testRef = storageRef.child('/Users/emmyemme/Desktop/TEST.png');
+
+// // Create a reference to 'images/TEST.jpg'
+var testImagesRef = storageRef.child('images/TEST_TWO.jpg');
+
+// While the file names are the same, the references point to different files
+testRef.name === testImagesRef.name            // true
+testRef.fullPath === testImagesRef.fullPath    // false
+
+
+
+
 $("#submit-bathroom").on("click", function(event) {
 
         event.preventDefault(); 
@@ -75,8 +92,41 @@ $("#submit-bathroom").on("click", function(event) {
         var address = $("#address-input").val().trim();
         $("#address-input").val("");
 
+// ** IMAGE STUFF ** //
         var image = $("#image-input").val().trim();
         $("#image-input").val("");
+
+        var metadata = {
+            contentType: 'image',
+            customMetadata: {
+                'uploadedBy': 'Mr. Biggz',
+                'title': 'Biggie Sundae',
+                'caption': 'A Biggz Caption!!!'
+            },
+        };
+
+    var blob = new Blob([image], { type: "image/jpeg" });
+
+    var imageName = image.replace('C:\\fakepath\\','');
+
+    var uploadTask = firebase.storage().ref()
+        .child(imageName)
+        .put(blob, metadata);
+
+// Observe state change events such as progress, pause, and resume
+// See below for more detail
+    uploadTask.on('state_changed', function(snapshot){
+// Handle unsuccessful uploads       
+    }, function(error) {
+        
+    }, function() {
+        console.log("SUCCESS!!!!!!");
+
+    });
+
+
+// ** IMAGE STUFF END ** //
+
 
 
         // // Setting the object to store our information
