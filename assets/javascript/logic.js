@@ -3,7 +3,7 @@ function initMap() {
     var defaultPosition = new google.maps.LatLng(38.883340, -77.117982);
     var map = new google.maps.Map(document.getElementById("map-section"), {
         center: defaultPosition,
-        zoom: 11,
+        zoom: 10,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         panControl: false,
         streetViewControl: false,
@@ -178,8 +178,8 @@ $("#submit-bathroom").on("click", function(event) {
                         results[0]['geometry']['location'].lng()
                     );
 
-                    map.setCenter(coordinates)
-                    map.setZoom(11);
+                    map.setCenter(defaultPosition)
+                    map.setZoom(10);
 
                     marker = new google.maps.Marker({
                         position: coordinates,
@@ -197,25 +197,7 @@ $("#submit-bathroom").on("click", function(event) {
                             // infowindow.setContent()
                             // infowindow.open(map, this);
                         $('location-header').html(newPost.address.toUpperCase())
-
                     });
-
-                    // // Event listener for the click so we can open an information window
-                    // marker.addListener('click', function() {
-                    //     infowindow.open(map, this);
-
-                    // });
-
-
-                    // // Setting the variable that will store the content the user types in so we can store it in an information window, need to fix this
-                    // var contentString = 'Name: ' + newPost.name + '<br>' + 'Address: ' + newPost.address + '<br>' + '<br>' + 'image' + '<br>' + '<br>' + newPost.review;
-
-
-
-                    // // Setting up the information window
-                    // var infowindow = new google.maps.InfoWindow({
-                    //     content: contentString
-                    // });
                 }
             });
     });
