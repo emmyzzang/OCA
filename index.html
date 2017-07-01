@@ -5,6 +5,9 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+    <!-- Linking to Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -15,10 +18,7 @@
     <script type="text/javascript" src="assets/javascript/logic.js"></script>
 
     <!-- Linking to Google Maps API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVV7ky30CSKnBWOazkfS4zt4xM7AvBgGk&callback=initMap" async defer></script>
-
-    <!-- Linking to Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVV7ky30CSKnBWOazkfS4zt4xM7AvBgGk&libraries=places&callback=initMap" async defer></script>
 
     <!-- Modified CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
@@ -41,7 +41,7 @@
                 <div class="col-lg-12 text-center" id="results-section">
                     <form id="input-form">
                         <label for="location-input">Where would you like to crapp?</label>
-                        <input type="text" id="location-input" class="form-control">
+                        <input type="text" id="location-input" class="form-control" required>
                         <br>
                         <input id="add-location" button class="btn btn-default" type="submit" value="Gotta Go Fast!">
                     </form>
@@ -68,7 +68,7 @@
                             <h4 class="modal-title">Ohhh, Cr<img src="assets/images/poop-emoji.png" alt="header-image" height="15px">pp!</h4>
                         </div>
                         <div class="modal-body">
-                            <p id="marker-info"></p>
+                            <p class="text-center" id="marker-info"></p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -85,22 +85,22 @@
                     <div class="form-group">
                         <label for="name">
                             <h3>Location Name:</h3></label>
-                        <input type="name" placeholder="Ex. Walmart" class="form-control" id="name-input">
+                        <input type="name" placeholder="Ex. Walmart" class="form-control" id="name-input" required>
                     </div>
                     <div class="form-group">
                         <label for="address">
                             <h3>Address:</h3></label>
-                        <input type="address" placeholder="Ex. 123 Main Street, Los Angeles, CA" class="form-control" id="address-input">
+                        <input type="address" placeholder="Ex. 123 Main Street, Los Angeles, CA" class="form-control" id="address-input" required>
                     </div>
                     <div class="form-group">
                         <label for="review">
                             <h3>Review:</h3></label>
-                        <textarea type="review" placeholder="Enter your review here..." class="form-control" rows="3" id="review-input"></textarea>
+                        <textarea type="review" placeholder="Enter your review here..." class="form-control" rows="3" id="review-input" required></textarea>
                     </div>
                     <div class="form-group">
                         <label for="image">
                             <h3>Image:</h3></label>
-                        <input type="file" placeholder="Submit your image..." class="form-control-file" id="image-input">
+                        <input type="file" placeholder="Submit your image..." class="form-control-file" id="image-input" required>
                     </div>
                     <button class="btn btn-default" id="submit-bathroom">Add Bathroom!</button>
                 </form>
