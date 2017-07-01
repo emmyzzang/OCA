@@ -73,10 +73,8 @@ function initMap() {
     testRef.fullPath === testImagesRef.fullPath // false
 
 
-
-
     $("#submit-bathroom").on("click", function(event) {
-        event.preventDefault(); 
+        // event.preventDefault(); 
 
         // Setting the variables to correspond to the input fields
         var name = $("#name-input").val().trim();
