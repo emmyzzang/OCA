@@ -56,10 +56,10 @@ function initMap() {
     var storageRef = firebase.storage().ref();
 
     // // Create a reference to 'TEST.jpg'
-    var testRef = storageRef.child('/Users/emmyemme/Desktop/TEST.png');
+    var testRef = storageRef.child('TEST.jpg');
 
     // // Create a reference to 'images/TEST.jpg'
-    var testImagesRef = storageRef.child('images/TEST_TWO.jpg');
+    var testImagesRef = storageRef.child('images/TEST.jpg');
 
     // While the file names are the same, the references point to different files
     testRef.name === testImagesRef.name // true
@@ -85,34 +85,30 @@ function initMap() {
             },
         };
 
-
-
-
-
         // //Image Storage Section Begins
         var blob = new Blob([image], { type: "image/jpeg" });
 
         var imageName = image.replace('C:\\fakepath\\', '');
 
-        // var uploadTask = firebase.storage().ref()
-        //     .child(imageName)
-        //     .put(blob, metadata);
+        var uploadTask = firebase.storage().ref()
+            .child(imageName)
+            .put(blob, metadata);
 
-        // // Observe state change events such as progress, pause, and resume
-        // uploadTask.on('state_changed', function(snapshot) {
+        // Observe state change events such as progress, pause, and resume
+        uploadTask.on('state_changed', function(snapshot) {
 
 
-        //     },
+            },
 
-        //     // Handle unsuccessful uploads   
-        //     function(error) {
+            // Handle unsuccessful uploads   
+            function(error) {
 
-        //     },
+            },
 
-        //     function() {
-        //         console.log("SUCCESS!!!!!!");
+            function() {
+                console.log("SUCCESS!!!!!!");
 
-        //     });
+            });
         // // Image Storage Section Ends
 
 
