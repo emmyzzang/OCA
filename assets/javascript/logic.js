@@ -3,9 +3,6 @@ function initMap() {
     var autocomplete = new google.maps.places.Autocomplete(
 
         (document.getElementById('address-input')), { types: ['geocode'] });
-  
-        (document.getElementById('address-input')),
-        {types: ['geocode']});
 
     var defaultPosition = new google.maps.LatLng(38.883340, -77.117982);
     var map = new google.maps.Map(document.getElementById("map-section"), {
