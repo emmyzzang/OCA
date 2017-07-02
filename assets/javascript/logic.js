@@ -1,10 +1,10 @@
-// Initilize Google Maps API and displaying to the page
+// Initialize Google Maps API and displaying to the page
 function initMap() {
     var autocomplete = new google.maps.places.Autocomplete(
         (document.getElementById('address-input')), { types: ['geocode'] });
 
-
     var defaultPosition = new google.maps.LatLng(38.883340, -77.117982);
+
     var map = new google.maps.Map(document.getElementById("map-section"), {
         center: defaultPosition,
         zoom: 7,
@@ -25,6 +25,7 @@ function initMap() {
         storageBucket: "gs://oca-db-deb77.appspot.com",
         messagingSenderId: "386358233518"
     };
+
     firebase.initializeApp(config);
 
     var database = firebase.database();
@@ -40,24 +41,16 @@ function initMap() {
         // Grab the user input and store into declarative variable
         var newLocation = $("#location-input").val().trim();
 
-        // Create temporary object for holding new location data
-
-        // Upload the newObject location data to the database
-        // This will trigger the "child_added" event
         newObject = {
             location: newLocation
-
         };
-
 
         database.ref().push(newObject);
         alert("WOOO!");
     });
 
 
-
     //USER ADDING NEW DATA TO DB VIA ADD CHILD
-
 
     // // Create a root reference in a declarative variable 
     var storageRef = firebase.storage().ref();
@@ -74,7 +67,7 @@ function initMap() {
 
 
     $("#submit-bathroom").on("click", function(event) {
-        // event.preventDefault(); 
+        event.preventDefault();
 
         // Setting the variables to correspond to the input fields
         var name = $("#name-input").val().trim();
@@ -92,27 +85,37 @@ function initMap() {
             },
         };
 
+
+
+
+
+        // //Image Storage Section Begins
         var blob = new Blob([image], { type: "image/jpeg" });
 
         var imageName = image.replace('C:\\fakepath\\', '');
 
-        //     var uploadTask = firebase.storage().ref()
-        //         .child(imageName)
-        //         .put(blob, metadata);
+        // var uploadTask = firebase.storage().ref()
+        //     .child(imageName)
+        //     .put(blob, metadata);
 
         // // Observe state change events such as progress, pause, and resume
-        // // See below for more detail
-        //     uploadTask.on('state_changed', function(snapshot){
-        // // Handle unsuccessful uploads       
-        //     }, function(error) {
+        // uploadTask.on('state_changed', function(snapshot) {
 
-        //     }, function() {
+
+        //     },
+
+        //     // Handle unsuccessful uploads   
+        //     function(error) {
+
+        //     },
+
+        //     function() {
         //         console.log("SUCCESS!!!!!!");
 
         //     });
+        // // Image Storage Section Ends
 
 
-        // ** IMAGE STUFF END ** //
 
 
 
@@ -124,20 +127,18 @@ function initMap() {
             image: image,
         };
 
-
-        // Pushing our input values to a new object for each submission
+        // Pushing our input values to the newPost object for each submission
         database.ref().push(newPost);
 
+        // Adding each submission to our database
         database.ref().on("child_added", function(snapshot) {
             name: snapshot.val().name;
             address: snapshot.val().address;
             review: snapshot.val().review;
-            image: snapshot.val().image
-                // Write this information to the marker and/or page somewhere
+            image: snapshot.val().image;
         });
 
-
-        // Setting up the geocoder so when we type in the physical address it will convert to lattitude and longitude coordinates for us
+        // Geocoder will convert the address string to lattitude & longitude
         var geocoder = new google.maps.Geocoder();
         geocoder.geocode({
                 address: address,
@@ -146,12 +147,13 @@ function initMap() {
 
             function(results, status) {
                 var name = $("#name-input").val().trim();
+               
                 var address = $("#address-input").val().trim();
+               
                 var review = $("#review-input").val().trim();
+               
                 var image = $("#image-input").val().trim();
 
-
-                // Setting the icon variable to the image we'll use
                 var icon = {
                     url: "assets/images/poop-emoji.png",
                     scaledSize: new google.maps.Size(30, 30),
@@ -160,6 +162,7 @@ function initMap() {
                 };
 
                 if (status.toLowerCase() == 'ok') {
+                 
                     var coordinates = new google.maps.LatLng(
                         results[0]['geometry']['location'].lat(),
                         results[0]['geometry']['location'].lng()
@@ -174,30 +177,34 @@ function initMap() {
                         icon: icon
                     });
 
-                    var contentString = '<img src="#" height="500px">' + '<br>' + '<br>' + 'NAME: ' + '<br>' + newPost.name.toUpperCase() + '<br>' + '<br>' + 'ADDRESS: ' + '<br>' + newPost.address.toUpperCase() + '<br>' + '<br>' + '<strong>REVIEW:</strong> ' + '<br>' + newPost.review.toUpperCase();
+                    var contentString = '<img src="#" height="400px">' + '<br>' + '<br>' + 'NAME: ' + '<br>' + newPost.name.toUpperCase() + '<br>' + '<br>' + 'ADDRESS: ' + '<br>' + newPost.address.toUpperCase() + '<br>' + '<br>' + '<strong>REVIEW:</strong> ' + '<br>' + newPost.review.toUpperCase();
 
-
-                    // Event listener for the click so we can open a modal that will display the content from the database
+                    // Display the modal when the marker is clicked
                     marker.addListener('click', function() {
                         $('#myModal').modal('show');
                         $('#marker-info').html(contentString)
-                            // infowindow.setContent()
-                            // infowindow.open(map, this);
                         $('location-header').html(newPost.address.toUpperCase())
-
+                        // infowindow.setContent()
+                        // infowindow.open(map, this);
                     });
-
                 }
             });
     });
 };
 
-        //Clear the input forms upon submission
-        $("#review-input").val("");
-        $("#name-input").val("");
-        $("#address-input").val("");
-        $("#image-input").val("");
-        $("#location-input").val("");
+
+//Clear the input forms upon submission
+$("#review-input").val("");
+$("#name-input").val("");
+$("#address-input").val("");
+$("#image-input").val("");
+$("#location-input").val("");
 
 
+function addMarkers() {
 
+    // Pull markers from the database and add them to our map
+
+};
+
+addMarkers();

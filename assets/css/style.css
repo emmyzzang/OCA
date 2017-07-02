@@ -54,6 +54,11 @@ form {
     margin-right: .5%;
 }
 
+.modal-admin {
+    margin-top: 3em;
+    margin-left: 1em;
+}
+
 #results-section {
     width: 98%;
     height: auto;
