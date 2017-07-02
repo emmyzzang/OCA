@@ -1,8 +1,11 @@
 // Initilize Google Maps API and displaying to the page
 function initMap() {
     var autocomplete = new google.maps.places.Autocomplete(
-        (document.getElementById('address-input')), { types: ['geocode'] });
 
+        (document.getElementById('address-input')), { types: ['geocode'] });
+  
+        (document.getElementById('address-input')),
+        {types: ['geocode']});
 
     var defaultPosition = new google.maps.LatLng(38.883340, -77.117982);
     var map = new google.maps.Map(document.getElementById("map-section"), {
@@ -13,6 +16,25 @@ function initMap() {
         streetViewControl: false,
         mapTypeControl: false,
     });
+
+// Setting up our firebase configuration
+// Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyB9nsZljpiCtBWyKOKUbW3uHC4G-jvwnBY",
+            authDomain: "oca-db-deb77.firebaseapp.com",
+            databaseURL: "https://oca-db-deb77.firebaseio.com",
+            projectId: "oca-db-deb77",
+            storageBucket: "gs://oca-db-deb77.appspot.com",
+            messagingSenderId: "386358233518"
+          };
+          firebase.initializeApp(config);
+
+        var database = firebase.database();
+    
+//USER QUERY EXISTING DB DATA
+
+    // Event listener for button for user to query existing bathroom db 
+    // for bathroom location that the user is trying to find 
 
 
     // Setting up our firebase configuration
