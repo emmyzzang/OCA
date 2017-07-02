@@ -12,7 +12,7 @@ function initMap() {
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         panControl: false,
         streetViewControl: false,
-        mapTypeControl: false,
+        mapTypeControl: false
     });
 
 
