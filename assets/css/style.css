@@ -11,7 +11,9 @@ h2 {
     margin-top: 0px;
 }
 
-body {}
+body {
+
+}
 
 footer {
     width: 100%;
@@ -68,6 +70,7 @@ form {
     padding-left: 5%;
     padding-right: 5%;
     border: 1px solid black;
+    border-radius: 1em;
     background-color: white;
     margin-bottom: 1em; 
 }
@@ -91,7 +94,7 @@ form {
     background-color: white;
 }
 
-#search-section {
+#submit-info-section {
     width: 98%; 
     height: 35em;
     margin-bottom: 5em;

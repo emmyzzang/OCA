@@ -30,13 +30,14 @@ function initMap() {
 
     var database = firebase.database();
 
+
     //USER QUERY EXISTING DB DATA
 
-    // Event listener for button for user to query existing bathroom db 
+    // Event listener for button for user to query existing bathroom database 
     // for bathroom location that the user is trying to find 
-
     $("#add-location").click(function(event) {
         event.preventDefault();
+
 
         // Grab the user input and store into declarative variable
         var newLocation = $("#location-input").val().trim();
@@ -50,16 +51,17 @@ function initMap() {
     });
 
 
-    //USER ADDING NEW DATA TO DB VIA ADD CHILD
-
     // // Create a root reference in a declarative variable 
     var storageRef = firebase.storage().ref();
+
 
     // // Create a reference to 'TEST.jpg'
     var testRef = storageRef.child('TEST.jpg');
 
+
     // // Create a reference to 'images/TEST.jpg'
     var testImagesRef = storageRef.child('images/TEST.jpg');
+
 
     // While the file names are the same, the references point to different files
     testRef.name === testImagesRef.name // true
@@ -69,13 +71,20 @@ function initMap() {
     $("#submit-bathroom").on("click", function(event) {
         event.preventDefault();
 
+
         // Setting the variables to correspond to the input fields
         var name = $("#name-input").val().trim();
+        $("#location-input").val("");
+        $("#name-input").val("");
         var review = $("#review-input").val().trim();
+        $("#review-input").val("");
         var address = $("#address-input").val().trim();
+        $("#address-input").val("");
         var image = $("#image-input").val().trim();
+        $("#image-input").val("");
 
-        // ** IMAGE UPLOAD STUFF ** //
+
+        // Storing the image to Firebase
         var metadata = {
             contentType: 'image',
             customMetadata: {
@@ -85,7 +94,6 @@ function initMap() {
             },
         };
 
-        // //Image Storage Section Begins
         var blob = new Blob([image], { type: "image/jpeg" });
 
         var imageName = image.replace('C:\\fakepath\\', '');
@@ -94,25 +102,25 @@ function initMap() {
             .child(imageName)
             .put(blob, metadata);
 
+
         // Observe state change events such as progress, pause, and resume
         uploadTask.on('state_changed', function(snapshot) {
 
 
             },
 
+
             // Handle unsuccessful uploads   
             function(error) {
 
             },
 
+
+            // Successful uploads
             function() {
-                console.log("SUCCESS!!!!!!");
+                console.log("SUCCESS!! UPLOAD COMPLETE!!");
 
             });
-        // // Image Storage Section Ends
-
-
-
 
 
         // Setting the object to store our information
@@ -123,8 +131,10 @@ function initMap() {
             image: image,
         };
 
+
         // Pushing our input values to the newPost object for each submission
         database.ref().push(newPost);
+
 
         // Adding each submission to our database
         database.ref().on("child_added", function(snapshot) {
@@ -133,6 +143,7 @@ function initMap() {
             review: snapshot.val().review;
             image: snapshot.val().image;
         });
+
 
         // Geocoder will convert the address string to lattitude & longitude
         var geocoder = new google.maps.Geocoder();
@@ -143,11 +154,11 @@ function initMap() {
 
             function(results, status) {
                 var name = $("#name-input").val().trim();
-               
+
                 var address = $("#address-input").val().trim();
-               
+
                 var review = $("#review-input").val().trim();
-               
+
                 var image = $("#image-input").val().trim();
 
                 var icon = {
@@ -158,7 +169,7 @@ function initMap() {
                 };
 
                 if (status.toLowerCase() == 'ok') {
-                 
+
                     var coordinates = new google.maps.LatLng(
                         results[0]['geometry']['location'].lat(),
                         results[0]['geometry']['location'].lng()
@@ -173,15 +184,15 @@ function initMap() {
                         icon: icon
                     });
 
-                    var contentString = '<img src="#" height="400px">' + '<br>' + '<br>' + 'NAME: ' + '<br>' + newPost.name.toUpperCase() + '<br>' + '<br>' + 'ADDRESS: ' + '<br>' + newPost.address.toUpperCase() + '<br>' + '<br>' + '<strong>REVIEW:</strong> ' + '<br>' + newPost.review.toUpperCase();
+                    var contentString = '<img src="#" height="500px">' + '<br>' + '<br>' + 'NAME: ' + '<br>' + newPost.name.toUpperCase() + '<br>' + '<br>' + 'ADDRESS: ' + '<br>' + newPost.address.toUpperCase() + '<br>' + '<br>' + '<strong>REVIEW:</strong> ' + '<br>' + newPost.review.toUpperCase();
 
                     // Display the modal when the marker is clicked
                     marker.addListener('click', function() {
                         $('#myModal').modal('show');
                         $('#marker-info').html(contentString)
                         $('location-header').html(newPost.address.toUpperCase())
-                        // infowindow.setContent()
-                        // infowindow.open(map, this);
+                            // infowindow.setContent()
+                            // infowindow.open(map, this);
                     });
                 }
             });
@@ -198,9 +209,7 @@ $("#location-input").val("");
 
 
 function addMarkers() {
-
     // Pull markers from the database and add them to our map
-
 };
 
 addMarkers();
