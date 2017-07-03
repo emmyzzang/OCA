@@ -2,6 +2,8 @@
 function initMap() {
     var autocomplete = new google.maps.places.Autocomplete(
         (document.getElementById('address-input')), { types: ['geocode'] });
+    var autocompleteTop = new google.maps.places.Autocomplete(
+        (document.getElementById('location-input')), { types: ['geocode'] });
 
     var defaultPosition = new google.maps.LatLng(38.883340, -77.117982);
 
@@ -15,7 +17,7 @@ function initMap() {
     });
 
 
-    // Setting up our firebase configuration
+    // Set up firebase configuration
     // Initialize Firebase
     var config = {
         apiKey: "AIzaSyB9nsZljpiCtBWyKOKUbW3uHC4G-jvwnBY",
@@ -31,13 +33,12 @@ function initMap() {
     var database = firebase.database();
 
 
-    //USER QUERY EXISTING DB DATA
+//**USER QUERY EXISTING DB DATA**//
 
     // Event listener for button for user to query existing bathroom database 
     // for bathroom location that the user is trying to find 
     $("#add-location").click(function(event) {
         event.preventDefault();
-
 
         // Grab the user input and store into declarative variable
         var newLocation = $("#location-input").val().trim();
@@ -45,167 +46,149 @@ function initMap() {
         newObject = {
             location: newLocation
         };
+    // Query db with event handler and pass a snapshot event thru fcn 
+    // .val() grabs the childSnapshot behind it and passes it thru the fcn forEach 
+        var leadsRef = database.ref('myData');
+        leadsRef.on('value', function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+            var childData = childSnapshot.val();
+            if(newLocation === childData.address) {
+            //Update map function to update map! 
+            updateMap(childData); 
+                }
+            });
+        });
 
         database.ref().push(newObject);
         alert("WOOO!");
     });
 
 
-    // // Create a root reference in a declarative variable 
-    var storageRef = firebase.storage().ref();
-
-
-    // // Create a reference to 'TEST.jpg'
-    var testRef = storageRef.child('TEST.jpg');
-
-
-    // // Create a reference to 'images/TEST.jpg'
-    var testImagesRef = storageRef.child('images/TEST.jpg');
-
-
-    // While the file names are the same, the references point to different files
-    testRef.name === testImagesRef.name // true
-    testRef.fullPath === testImagesRef.fullPath // false
-
-
+//**USER SUBMIT DATA TO DATABASE**// 
     $("#submit-bathroom").on("click", function(event) {
         event.preventDefault();
 
-
-        // Setting the variables to correspond to the input fields
+        // Set the variables to correspond to the input fields
         var name = $("#name-input").val().trim();
-        $("#location-input").val("");
-        $("#name-input").val("");
         var review = $("#review-input").val().trim();
-        $("#review-input").val("");
         var address = $("#address-input").val().trim();
-        $("#address-input").val("");
-        var image = $("#image-input").val().trim();
-        $("#image-input").val("");
-
-
-        // Storing the image to Firebase
-        var metadata = {
-            contentType: 'image',
-            customMetadata: {
-                'uploadedBy': 'Mr. Biggz',
-                'title': 'Biggie Sundae',
-                'caption': 'A Biggz Caption!!!'
-            },
-        };
-
-        var blob = new Blob([image], { type: "image/jpeg" });
-
-        var imageName = image.replace('C:\\fakepath\\', '');
-
-        var uploadTask = firebase.storage().ref()
-            .child(imageName)
-            .put(blob, metadata);
-
+        // Image input needs to be grabbed from a collection of files  
+        var fileCollection = $("#image-input");
+        // The option to select an entire file collection if we really wanted to
+        var file = fileCollection[0].files[0];
+        // Need to declare what object the child is comprised of, and store in declarative var 
+        var fileName = file.name;
+        // Define the upload task to ref the path of the file in db
+        var uploadTask = firebase
+                .storage()
+                .ref()
+                .child(fileName)
+                .put(file);
 
         // Observe state change events such as progress, pause, and resume
         uploadTask.on('state_changed', function(snapshot) {
 
-
             },
 
-
-            // Handle unsuccessful uploads   
-            function(error) {
-
+        // Handle unsuccessful uploads   
+        function(error) {
+        console.log('failed to upload image. sadface!');
             },
 
+        // Successful uploads
+        function() {
+        console.log("SUCCESS!! UPLOAD COMPLETE!!");
 
-            // Successful uploads
-            function() {
-                console.log("SUCCESS!! UPLOAD COMPLETE!!");
+        // Create the imageURL and prepare to insert it as a JSON object property 
+        var imageURL = uploadTask.snapshot.downloadURL;
 
-            });
-
-
-        // Setting the object to store our information
+        // Declare the object to store our information
+        //This is staging the post as a JSON object to be pushed to db
         var newPost = {
             name: name,
             address: address,
             review: review,
-            image: image,
-        };
+            imageURL: imageURL,
+         };
 
+        // Push our input values to the newPost object for each submission
+            database.ref().child('myData').push(newPost);
 
-        // Pushing our input values to the newPost object for each submission
-        database.ref().push(newPost);
+                // Add each submission to our database
+                // .val() grabs the snapshot of each form element and updates it 
+                database.ref().on("child_added", function(snapshot) {
+                    name: snapshot.val().name;
+                    address: snapshot.val().address;
+                    review: snapshot.val().review;
+                    imageURL: snapshot.val().imageURL;
+                });
 
+                    updateMap(newPost); 
+                
+                    // Clear the input forms upon submission
+                    $("#review-input").val("");
+                    $("#name-input").val("");
+                    $("#address-input").val("");
+                    $("#image-input").val("");
+                    $("#location-input").val("");
 
-        // Adding each submission to our database
-        database.ref().on("child_added", function(snapshot) {
-            name: snapshot.val().name;
-            address: snapshot.val().address;
-            review: snapshot.val().review;
-            image: snapshot.val().image;
-        });
-
-
-        // Geocoder will convert the address string to lattitude & longitude
-        var geocoder = new google.maps.Geocoder();
-        geocoder.geocode({
-                address: address,
-                region: 'no'
-            },
-
-            function(results, status) {
-                var name = $("#name-input").val().trim();
-
-                var address = $("#address-input").val().trim();
-
-                var review = $("#review-input").val().trim();
-
-                var image = $("#image-input").val().trim();
-
-                var icon = {
-                    url: "assets/images/poop-emoji.png",
-                    scaledSize: new google.maps.Size(30, 30),
-                    origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(0, 0)
-                };
-
-                if (status.toLowerCase() == 'ok') {
-
-                    var coordinates = new google.maps.LatLng(
-                        results[0]['geometry']['location'].lat(),
-                        results[0]['geometry']['location'].lng()
-                    );
-
-                    map.setCenter(defaultPosition)
-                    map.setZoom(7);
-
-                    marker = new google.maps.Marker({
-                        position: coordinates,
-                        map: map,
-                        icon: icon
-                    });
-
-                    var contentString = '<img src="#" height="500px">' + '<br>' + '<br>' + 'NAME: ' + '<br>' + newPost.name.toUpperCase() + '<br>' + '<br>' + 'ADDRESS: ' + '<br>' + newPost.address.toUpperCase() + '<br>' + '<br>' + '<strong>REVIEW:</strong> ' + '<br>' + newPost.review.toUpperCase();
-
-                    // Display the modal when the marker is clicked
-                    marker.addListener('click', function() {
-                        $('#myModal').modal('show');
-                        $('#marker-info').html(contentString)
-                        $('location-header').html(newPost.address.toUpperCase())
-                            // infowindow.setContent()
-                            // infowindow.open(map, this);
-                    });
-                }
+                });
             });
-    });
-};
+        
 
+        function updateMap(newPost){
+// Geocoder will convert the address string to latitude & longitude
+                var geocoder = new google.maps.Geocoder();
+                geocoder.geocode({
+                        address: newPost.address,
+                        region: 'no'
+                    },
 
-//Clear the input forms upon submission
-$("#review-input").val("");
-$("#name-input").val("");
-$("#address-input").val("");
-$("#image-input").val("");
-$("#location-input").val("");
+                // This adds a pin to the map
+                    function(results, status) {
+                        var name = $("#name-input").val().trim();
+                        var address = $("#address-input").val().trim();
+                        var review = $("#review-input").val().trim();
+                        var image = $("#image-input").val().trim();
+
+                        var icon = {
+                            url: "assets/images/poop-emoji.png",
+                            scaledSize: new google.maps.Size(30, 30),
+                            origin: new google.maps.Point(0, 0),
+                            anchor: new google.maps.Point(0, 0)
+                        };
+
+                        if (status.toLowerCase() == 'ok') {
+
+                            var coordinates = new google.maps.LatLng(
+                                results[0]['geometry']['location'].lat(),
+                                results[0]['geometry']['location'].lng()
+                            );
+
+                            map.setCenter(defaultPosition)
+                            map.setZoom(7);
+
+                            marker = new google.maps.Marker({
+                                position: coordinates,
+                                map: map,
+                                icon: icon
+                            });
+
+                            // Include the imageURL in the content
+                            var contentString = '<img src=' + newPost.imageURL + ' height="500px">' + '<br>' + '<br>' + 'NAME: ' + '<br>' + newPost.name.toUpperCase() + '<br>' + '<br>' + 'ADDRESS: ' + '<br>' + newPost.address.toUpperCase() + '<br>' + '<br>' + '<strong>REVIEW:</strong> ' + '<br>' + newPost.review.toUpperCase();
+
+                            // Display the modal when the marker is clicked
+                            marker.addListener('click', function() {
+                                $('#myModal').modal('show');
+                                $('#marker-info').html(contentString)
+                                $('location-header').html(newPost.address.toUpperCase())
+                                    // infowindow.setContent()
+                                    // infowindow.open(map, this);
+                            });
+                        }
+                    });
+        };
+        };
 
 
 function addMarkers() {
