@@ -51,7 +51,7 @@ function initMap() {
         leadsRef.on('value', function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
             var childData = childSnapshot.val();
-            if(newLocation === childData.address) {
+            if(newLocation === childData.address || newLocation == childData.name) {
             //Update map function to update map! 
             updateMap(childData); 
                 }
