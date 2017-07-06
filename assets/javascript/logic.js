@@ -18,17 +18,16 @@ function initMap() {
 
 
     // Set up firebase configuration
-    // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyB9nsZljpiCtBWyKOKUbW3uHC4G-jvwnBY",
-        authDomain: "oca-db-deb77.firebaseapp.com",
-        databaseURL: "https://oca-db-deb77.firebaseio.com",
-        projectId: "oca-db-deb77",
-        storageBucket: "gs://oca-db-deb77.appspot.com",
-        messagingSenderId: "386358233518"
-    };
-
-    firebase.initializeApp(config);
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDuxG2pJypuXV0shA-4H91vskgRNS-FY1k",
+    authDomain: "oca-prod.firebaseapp.com",
+    databaseURL: "https://oca-prod.firebaseio.com",
+    projectId: "oca-prod",
+    storageBucket: "oca-prod.appspot.com",
+    messagingSenderId: "70721241482"
+  };
+  firebase.initializeApp(config);
 
     var database = firebase.database();
 
