@@ -3,144 +3,120 @@
 <head>
     <title>Oh, Crapp!</title>
 
-
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
 
     <!-- Linking to Firebase -->
     <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
 
-
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
     <!--Linking the JS file-->
     <script type="text/javascript" src="assets/javascript/logic.js"></script>
-
 
     <!-- Linking to Google Maps API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVV7ky30CSKnBWOazkfS4zt4xM7AvBgGk&libraries=places&callback=initMap" async defer></script>
 
-
     <!-- Modified CSS -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    
 
     <!-- Google Fonts: Varela Round -->
     <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+
 </head>
 
 <body>
     <div class="jumbotron text-center">
         <h1>Ohhh, Cr<img src="assets/images/poop-emoji.png" alt="header-image" height="50px">pp!</h1>
     </div>
-    <div class="container">
-
-
-        <!-- This is the start of the section displaying the map and the search/results -->
-        <section id="display-map">
-
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-12" id="error-message"></div>
+            <div class="col-lg-6" id="error-message"></div>
         </div>
-            <div class="row">
 
+        <!-- This will be our search section -->
+        <div class="row">
+            <div class="col-lg-3">
+                <form id="search-section"">
+                    <label for="location-input"><h5>Where would you like to crapp?</h5></label>
+                    <input type="text" id="location-input" class="form-control" required>
+                    <br>
+                    <input id="search-location" button class="btn btn-default" type="submit" value="Gotta Go Fast!">
+                </form>
 
-                <!-- This will be our results/search section -->
-                <div class="col-lg-12 text-center" id="results-section">
-                    <form id="input-form">
-                        <label for="location-input">Where would you like to crapp?</label>
-                        <input type="text" id="location-input" class="form-control" required>
-                        <br>
-                        <input id="add-location" button class="btn btn-default" type="submit" value="Gotta Go Fast!">
-                    </form>
-                    <div id="location-view"></div>
-                    <div id="images-appear-here"></div>
-                    
-                </div>
-            </div>
-
-
-                <!-- This will be where the map is displayed -->
-                <div class="col-lg-12 text-center" id="map-section">
-                    MAP GOES HERE
-                </div>
- 
-        </section>
-
-
-        <!-- Modal for Marker clicks -->
-        <section id="marker-modal">
-            <div class="modal fade" id="myModal" role="admin">
-                <div class="modal-admin">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"></button>
-                            <h4 class="modal-title">Ohhh, Cr<img src="assets/images/poop-emoji.png" alt="header-image" height="15px">pp!</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p class="text-center" id="marker-info"></p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- This section will hold our form -->
-        <section id="submit-info-section">
-            <div class="col-lg-12 text-center" id="form-section">
-                <form>
+                <!-- This will be our section to submit images -->
+                <form id="submit-info-section">
                     <div class="form-group">
                         <label for="name">
-                            <h3>Location Name:</h3></label>
+                            <h5>Location Name:</h5></label>
                         <input type="name" placeholder="Ex. Walmart" class="form-control" id="name-input" required>
                     </div>
                     <div class="form-group">
                         <label for="address">
-                            <h3>Address:</h3></label>
+                            <h5>Address:</h5></label>
                         <input type="address" placeholder="Ex. 123 Main Street, Los Angeles, CA" class="form-control" id="address-input" required>
                     </div>
                     <div class="form-group">
                         <label for="review">
-                            <h3>Review:</h3></label>
+                            <h5>Review:</h5></label>
                         <textarea type="review" placeholder="Enter your review here..." class="form-control" rows="3" id="review-input" required></textarea>
                     </div>
                     <div class="form-group">
                         <label for="image">
-                            <h3>Image:</h3></label>
+                            <h5>Image:</h5></label>
                         <input type="file" placeholder="Submit your image..." class="form-control-file" id="image-input" required>
+                        </label>
                     </div>
-                    <button class="btn btn-default" id="submit-bathroom">Add Bathroom!</button>
+                       <input id="submit-bathroom" button class="btn btn-default" type="submit" value="Add Bathroom!">
+                    <!-- <button class="btn btn-default" id="submit-bathroom">Add Bathroom!</button> -->
                 </form>
             </div>
-    </div>
-    </section>
 
+            <section>
+                <!-- This will be where the map is displayed -->
+                <div class="col-lg-9" id="map-section">
+                    MAP GOES HERE
+                </div>
+            </section>
 
-    <!-- This section will hold our footer -->
-    <section>
-        <footer class="text-center">
-            <ul>
-                <li>
-                    <a href="http://www.instagram.com/ohhhcrapp"><img class="social-icons" src="assets/images/instagram-icon.png" alt="Instagram" height="75px"></a>
-                </li>
-                <li>
-                    <a href="#"><img class="social-icons" src="assets/images/twitter-icon.png" alt="Twitter" height="60px"></a>
-                </li>
-            </ul>
-            <footer>
-    </section>
-    </div>
+            <!-- Modal for Marker clicks -->
+            <section id="marker-modal">
+                <div class="modal fade" id="myModal" role="admin">
+                    <div class="modal-admin">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"></button>
+                                <h4 class="modal-title">Ohhh, Cr<img src="assets/images/poop-emoji.png" alt="header-image" height="15px">pp!</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-center" id="marker-info"></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- This section will hold our footer -->
+            <section>
+                <footer class="text-center">
+                    <ul>
+                        <li>
+                            <a href="http://www.instagram.com/ohhhcrapp"><img class="social-icons" src="assets/images/instagram-icon.png" alt="Instagram" height="75px"></a>
+                        </li>
+                        <li>
+                            <a href="#"><img class="social-icons" src="assets/images/twitter-icon.png" alt="Twitter" height="60px"></a>
+                        </li>
+                    </ul>
+                    <footer>
+            </section>
+        </div>
 </body>
 
 </html>
