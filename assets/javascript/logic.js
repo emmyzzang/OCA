@@ -59,6 +59,8 @@ function initMap() {
                     }
                     error();
                     $('#error-message').fadeOut(4000);
+                    $("#location-input").val("");
+
                 }
             });
         });
@@ -133,7 +135,6 @@ function initMap() {
                 $("#name-input").val("");
                 $("#address-input").val("");
                 $("#image-input").val("");
-                $("#location-input").val("");
 
             });
     });
@@ -141,6 +142,7 @@ function initMap() {
 
     function updateMap(newPost) {
         // Geocoder will convert the address string to latitude & longitude
+        $("#location-input").val("");
         var geocoder = new google.maps.Geocoder();
         geocoder.geocode({
                 address: newPost.address,
