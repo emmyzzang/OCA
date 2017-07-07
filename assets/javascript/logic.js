@@ -53,15 +53,17 @@ function initMap() {
                 if (newLocation == childData.address || newLocation == childData.name) {
                     //Update map function to update map! 
                     updateMap(childData);
-                } else {
-                    function error() {
-                        $('#error-message').html('Entry not found!')
-                    }
-                    error();
-                    $('#error-message').fadeOut(4000);
-                    $("#location-input").val("");
+                } 
 
-                }
+                // else {
+                //     function error() {
+                //         $('#error-message').html('Entry not found!')
+                //     }
+                //     error();
+                //     $('#error-message').fadeOut(4000);
+                //     $("#location-input").val("");
+
+                // }
             });
         });
 
@@ -194,10 +196,3 @@ function initMap() {
             });
     };
 };
-
-
-function addMarkers() {
-    // Pull markers from the database and add them to our map
-};
-
-addMarkers();
