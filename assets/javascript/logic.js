@@ -16,7 +16,6 @@ function initMap() {
         mapTypeControl: false,
     });
 
-
     // Set up firebase configuration
   // Initialize Firebase
   var config = {
