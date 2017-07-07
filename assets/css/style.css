@@ -103,3 +103,11 @@ form {
     margin-left: 1%;
     text-align: center;
 }
+
+#error-message {
+    text-align: center;
+    margin-bottom: 1em;
+    font-weight: bolder;
+    color: red;
+    font-size: 25px;
+}
