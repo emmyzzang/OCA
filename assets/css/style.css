@@ -4,11 +4,15 @@
 
 h1 {
     line-height: 2em;
-    margin-top: 0;
+    margin: 0;
 }
 
 h2 {
     margin-top: 0px;
+}
+
+h5 {
+    font-weight: 900;
 }
 
 body {
@@ -36,12 +40,12 @@ textarea {
 }
 
 form {
-    margin-bottom: 3em;
+    margin-bottom: 1em;
 }
 
 .jumbotron {
-    height: 10em;
-    margin-bottom: 1em;
+    height: 8em;
+    margin-bottom: 0em;
     padding: 0;
     background-color: white;
 }
@@ -61,47 +65,33 @@ form {
     margin-left: 1em;
 }
 
-#results-section {
-    width: 98%;
+#search-section {
+    width: 95%;
     height: auto;
-    margin-left: 1%;
-    margin-right: 1%;
-    padding-top: 1em;
-    padding-left: 5%;
-    padding-right: 5%;
+    margin-left: 0%;
+    margin-right: 0%;
+    padding: 1em;
     border: 1px solid lightgrey;
     border-radius: 1em;
-    background-color: white;
-    margin-bottom: 1em; 
-}
-
-#map-section {
-    width: 98%;
-    height: 500px;
-    margin-top: 1em;
-    margin-left: 1%;
-    margin-right: 1%;
-    border: 1px solid lightgrey;
-}
-
-#form-section {
-    border: 1px solid lightgrey;
-    border-radius: 10px;
-    margin-top: 3em;
-    margin-bottom: 7em;
-    padding-top: 2em;
-    padding-right: 2em;
-    padding-left: 2em;
-    background-color: white;
+    margin-bottom: 2em;
 }
 
 #submit-info-section {
-    width: 98%; 
-    height: 35em;
-    margin-bottom: 5em;
-    margin-right: 1%;
+    width: 95%;
+    height: auto;
+    margin-bottom: 1em;
+    padding: 1em;
+    border: 1px solid lightgrey;
+    border-radius: 1em;
+}
+
+#map-section {
+    width: 72%;
+    height: 645px;
+    margin-top: 0em;
     margin-left: 1%;
-    text-align: center;
+    margin-right: 2%;
+    border: 1px solid lightgrey;
 }
 
 #error-message {
@@ -110,4 +100,15 @@ form {
     font-weight: bolder;
     color: red;
     font-size: 25px;
+}
+
+#submit-bathroom {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 65%;
+}
+
+#search-location {
+    margin-bottom: 0em;
+    margin-left: 65%;
 }
