@@ -16,16 +16,16 @@ function initMap() {
         mapTypeControl: false,
     });
 
-    // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyDuxG2pJypuXV0shA-4H91vskgRNS-FY1k",
-        authDomain: "oca-prod.firebaseapp.com",
-        databaseURL: "https://oca-prod.firebaseio.com",
-        projectId: "oca-prod",
-        storageBucket: "oca-prod.appspot.com",
-        messagingSenderId: "70721241482"
-    };
-    firebase.initializeApp(config);
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBQPY-h3_CO_ENgFN1wxPd6b8anNocQqWM",
+    authDomain: "oca-production.firebaseapp.com",
+    databaseURL: "https://oca-production.firebaseio.com",
+    projectId: "oca-production",
+    storageBucket: "oca-production.appspot.com",
+    messagingSenderId: "955879301906"
+  };
+  firebase.initializeApp(config);
 
     var database = firebase.database();
 
