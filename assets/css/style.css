@@ -65,6 +65,7 @@ form {
     margin-left: 1em;
 }
 
+
 #search-section {
     width: 95%;
     height: auto;
@@ -74,6 +75,7 @@ form {
     border: 1px solid lightgrey;
     border-radius: 1em;
     margin-bottom: 2em;
+    overflow: hidden;
 }
 
 #submit-info-section {
@@ -83,6 +85,7 @@ form {
     padding: 1em;
     border: 1px solid lightgrey;
     border-radius: 1em;
+    overflow: hidden;
 }
 
 #map-section {
@@ -94,21 +97,33 @@ form {
     border: 1px solid lightgrey;
 }
 
-#error-message {
-    text-align: center;
-    margin-bottom: 1em;
-    font-weight: bolder;
-    color: red;
-    font-size: 25px;
-}
-
 #submit-bathroom {
     margin-top: 1em;
     margin-bottom: 1em;
-    margin-left: 65%;
+    /*margin-left: 60%;*/
 }
 
 #search-location {
     margin-bottom: 0em;
-    margin-left: 65%;
+    /*margin-right: 47;*/
+    /*margin-left: 47%;*/
+}
+
+@media screen and (max-width:1200px) {
+
+#map-section {
+    width: 98.25%;
+
+}
+
+#submit-info-section {
+    width: 100%;
+}
+
+#search-section {
+    width: 100%;
+}
+
+}
+
 }
