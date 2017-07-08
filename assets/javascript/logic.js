@@ -164,7 +164,7 @@ function initMap() {
                         results[0]['geometry']['location'].lng()
                     );
 
-                    map.setCenter(defaultPosition)
+                    map.setCenter(coordinates)
                     map.setZoom(5);
 
                     marker = new google.maps.Marker({
