@@ -3,7 +3,7 @@
 }
 
 h1 {
-    line-height: 2em;
+    line-height: 1.5em;
     margin: 0;
 }
 
@@ -44,7 +44,7 @@ form {
 }
 
 .jumbotron {
-    height: 8em;
+    height: 7.5em;
     margin-bottom: 0em;
     padding: 0;
     background-color: white;
@@ -61,8 +61,10 @@ form {
 }
 
 .modal-admin {
-    margin-top: 3em;
-    margin-left: 1em;
+    width: 1000px;
+    height: 10em;
+    margin-top: 1em;
+    margin-left: 17.5%;
 }
 
 
@@ -90,7 +92,7 @@ form {
 
 #map-section {
     width: 72%;
-    height: 650px;
+    height: 657px;
     margin-top: 0em;
     margin-left: 1%;
     margin-right: 2%;
@@ -109,7 +111,7 @@ form {
     /*margin-left: 47%;*/
 }
 
-@media screen and (max-width:1200px) {
+@media screen and (max-width:1200px) {    
 
 #map-section {
     width: 98.25%;
@@ -122,8 +124,6 @@ form {
 
 #search-section {
     width: 100%;
-}
-
 }
 
 }
