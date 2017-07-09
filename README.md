@@ -3,16 +3,7 @@
 
 //**Brief Summary**//
 
-Restroom Locator Application utilizing the following technologies: 
-Google Maps API
-Google Places Geocoder
-End User data 
-HTML
-CSS
-Bootstrap
-Javascript 
-JQuery 
-Google Firebase Databases & Storage  
+Restroom Locator Application utilizing the following technologies: Google Maps API, Google Places Geocoder, End User data, HTML, CSS, Bootstrap, Javascript, JQuery, Google Firebase Databases & Storage  
 
 Live Demo: https://masteremmy.github.io/OCA/
 
