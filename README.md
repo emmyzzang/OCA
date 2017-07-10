@@ -24,5 +24,5 @@ If submitting a location with the "Add This Bathroom" function on the second for
 
 # Current State of the Technology
 
-Try using the search box to search for terms like 'chris', 'vinny', 'jay', 'new york', 'dc', 'philadelphia', 'cincinnati', 'walmart' and 'house'. Since we are using Firebase, there are currently only a few (approximately 12) points of interest added to the database -- only ones the end users (beta testers) input. However, even searching for single letters such as 'c', should show the functionality and how it will pull up every entry in the database that contains a 'c', or whatever letter you choose, in the address or name field. 
+Try using the search box to search for terms like 'chris', 'vinny', 'jay', 'new york', 'dc', 'philadelphia', 'walmart' and 'house'. Since we are using Firebase, there are currently only a few (approximately 12) points of interest added to the database -- only ones the end users (beta testers) input. 
 
