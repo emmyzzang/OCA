@@ -9,7 +9,7 @@ Live Demo: https://masteremmy.github.io/OCA/
 
 **Purpose**
 
-This app aims to solve a problem many people face every day, or, during long distance travel -- the need to find a high quality restroom within a 1 mile radius, immediately. Although prior technologies have also utilized geospatial data to map places and information related to restrooms, the OCA app aims to have a greater focus on images and information related to the interior of the restooms, utilizing photos with a higher pixel density and larger display than the prior technology. This app is also user-friendly and social, in that it allows multiple users across the country to add photos and information at any time.  
+This app aims to solve a problem many people face every day, and especially during long distance travel: the immediate need to find a decent restroom. Although Google has also used geospatial data to map places and general information related to restrooms, the OCA app magnifies its focus on images and reviews related to the interior of the restooms. By using photos with a higher pixel density and an emphasis on restroom reviews, we aim for OCA to provide a game-changing restroom experience. How would businesses react if they knew their welcoming water closet was bringing in more foot traffic? This app is also user-friendly and social, in that it allows multiple users across the country to add photos and information at any time.  
 
 # Features 
 
