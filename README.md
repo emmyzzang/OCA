@@ -1,7 +1,7 @@
 
 # Application Description
 
-**Brief Summary**
+**Summary**
 
 Restroom Locator Application using the following technologies: Google Maps API, Google Places Geocoder, End User data, HTML, CSS, Bootstrap, Javascript, JQuery, Google Firebase Databases & Storage  
 
